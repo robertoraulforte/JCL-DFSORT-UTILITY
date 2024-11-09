@@ -1,0 +1,23 @@
+
+
+
+
+JCL SORT - Include Lowercase and Numeric characters Data (a-z, 0-9)
+
+
+
+//RACFID68 JOB 72,'IBMMAINFRAMER',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//********************************************************************************
+//* JCL SORT - INCLUDE LOWERCASE AND NUMBERIC CHARACTERS DATA (a-z, 0-9)
+//********************************************************************************
+//STEP001  EXEC  PGM=SORT
+//SYSOUT   DD  SYSOUT=*
+//SORTIN   DD  DSN=RACFID.IBMMF.INPUT,DISP=SHR
+//SORTOUT  DD  DSN=RACFID.IBMMF.OUTPUT,
+//             DISP=(NEW,CATLG,DELETE),
+//             UNIT=3390,SPACE=(CYL,(5,5))
+//SYSIN    DD  *
+  OPTION COPY
+  INCLUDE COND=(5,10,BI,EQ,LN)
+/*
+INCLUDE statement includes records which have lowercase and numeric characters(a-z, 0-9) in postions 5 to 15.

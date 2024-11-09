@@ -1,0 +1,23 @@
+
+
+
+
+JCL to copy dataset using ICETOOL
+
+
+//RACFID65 JOB 65,'IBMMAINFRAMER',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//********************************************************************************
+//* JCL TO COPY DATASET USING ICETOOL
+//********************************************************************************
+//STEP001  EXEC PGM=ICETOOL
+//TOOLMSG DD SYSOUT=*
+//DFSMSG  DD SYSOUT=*
+//*
+//INPUT   DD DSN=RACFID.IBMMF.INPUT,DISP=SHR
+//OUTPUT  DD DSN=RACFID.IBMMF.OUTPUT,DISP=(NEW,CATLG),
+//          DCB=(*.INPUT1)
+//*
+//TOOLIN  DD *
+  COPY FROM(INPUT) TO(OUTPUT)
+
+

@@ -1,0 +1,23 @@
+
+
+
+JCL SORT - Include Numeric Data
+
+
+
+
+//RACFID66 JOB 67,'IBMMAINFRAMER',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//********************************************************************************
+//* JCL SORT - INCLUDE NUMERIC DATA
+//********************************************************************************
+//STEP001  EXEC  PGM=SORT
+//SYSOUT   DD  SYSOUT=*
+//SORTIN   DD  DSN=RACFID.IBMMF.INPUT,DISP=SHR
+//SORTOUT  DD  DSN=RACFID.IBMMF.OUTPUT,
+//             DISP=(NEW,CATLG,DELETE),
+//             UNIT=3390,SPACE=(CYL,(5,5))
+//SYSIN    DD  *
+  OPTION COPY
+  INCLUDE COND=(1,3,FS,EQ,NUM)
+/*
+If the value in the field (1,3,FS) is equal (EQ) to numerics(NUM), those records will be included in output dataset.
