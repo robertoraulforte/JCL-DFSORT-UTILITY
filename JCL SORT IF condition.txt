@@ -1,0 +1,33 @@
+
+
+
+
+
+JCL SORT IF condition
+
+
+
+//RACFID61 JOB 61,'IBMMAINFRAMER',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//********************************************************************************
+//* JCL SORT IF CONDITION
+//********************************************************************************
+//STEP001  EXEC PGM=SORT
+//SORTIN   DD *
+123456789012345 ---> Column
+HEADRselect
+DETAL
+TRIALselect
+/*
+//SORTOUT  DD DSN=RACFID.IBMMF.OUTPUT,
+//        DISP=(NEW,CATLG,DELETE),
+//        DCB=*.SYSUT1,SPACE=(CYL,(50,1),RLSE)
+//SYSPRINT DD SYSOUT=*
+//SYSOUT   DD SYSOUT=*
+//SYSIN    DD *
+  INREC  IFTHEN=(WHEN=(6,1,CH,NE,C' '),BUILD=(1:1,15),
+         IFTHEN=(WHEN=(6,1,CH,EQ,C' '),BUILD=(1:1,5,7:C'RECORD')
+  OPTION COPY
+/*
+
+
+

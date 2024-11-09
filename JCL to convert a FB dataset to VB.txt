@@ -1,0 +1,25 @@
+
+
+
+
+JCL to convert a FB dataset to VB
+
+
+
+//RACFID63 JOB 63,'IBMMAINFRAMER',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//********************************************************************************
+//* JCL TO CONVERT A FB DATASET TO VB
+//********************************************************************************
+//STEP001  EXEC  PGM=SORT
+//SYSOUT   DD  SYSOUT=*
+//SORTIN   DD  DSN=RACFID.IBMMF.FBIN,DISP=SHR
+//VBOUT    DD  DSN=RACFID.IBMMF.VBOUT,
+//             DISP=(NEW,CATLG,DELETE),
+//             UNIT=3390,SPACE=(CYL,(5,5))
+//SYSIN    DD  *
+  OPTION COPY
+  OUTFIL FNAMES=VBOUT,FTOV
+/*
+
+
+

@@ -1,0 +1,19 @@
+
+
+
+
+JCL to COPY only first 100 records in dataset
+
+
+
+//RACFID60 JOB 60,'IBMMAINFRAMER',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//********************************************************************************
+//* JCL TO Copy ONLY FIRST 100 RECORDS IN DATASET
+//********************************************************************************
+//STEP001 EXEC PGM=SORT
+//SYSOUT  DD SYSOUT=*
+//SORTIN  DD DSN=RECFID.IBMMF.INPUT,DISP=SHR
+//SORTOUT DD DSN=RACFID.IBMMF.OUTPUT,DISP=SHR
+//SYSIN   DD *
+  OPTION COPY,STOPAFT=100
+/*

@@ -1,0 +1,19 @@
+
+
+
+
+JCL to Overwrite input record content
+
+
+//RACFID61 JOB 61,'IBMMAINFRAMER',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//********************************************************************************
+//* JCL TO OVERWRITE INPUT RECORD CONTENT
+//********************************************************************************
+//STEP001 EXEC PGM=SORT
+//SYSOUT  DD SYSOUT=*
+//SORTIN  DD DSN=RECFID.IBMMF.INPUT,DISP=SHR
+//SORTOUT DD DSN=RACFID.IBMMF.OUTPUT,DISP=SHR
+//SYSIN   DD *
+  OPTION COPY
+  INREC OVERLAY=(47:1,6)
+/*
