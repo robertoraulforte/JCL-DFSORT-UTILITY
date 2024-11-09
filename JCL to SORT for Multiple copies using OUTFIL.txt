@@ -1,0 +1,27 @@
+
+
+
+
+JCL to SORT for Multiple copies using OUTFIL
+
+
+
+//RACFID58 JOB 58,'IBMMAINFRAMER',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//********************************************************************************
+//* JCL SORT FOR MULTIPLE COPIES USING OUTFIL
+//********************************************************************************
+//STEP001  EXEC PGM=SORT
+//SORTIN   DD DSN=RACFID.IBMMF.INPUT,DISP=SHR
+//SORTOF01 DD DSN=RACFID.IBMMF.OUT1,DISP=SHR
+//SORTOF02 DD DSN=RACFID.IBMMF.OUT2,DISP=SHR
+//SORTOF03 DD DSN=RACFID.IBMMF.OUT3.DISP=SHR
+//*
+//SYSPRINT DD SYSOUT=*
+//SYSOUT   DD SYSOUT=*
+//SYSIN    DD *
+  OPTION COPY
+  OUTFIL FILES=(01,02,03)
+/*
+
+
+

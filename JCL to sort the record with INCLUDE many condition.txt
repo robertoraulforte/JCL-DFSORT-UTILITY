@@ -1,0 +1,28 @@
+
+
+
+
+JCL to sort the record with INCLUDE many condition
+
+
+
+
+//RACFID51 JOB 51,'IBMMAINFRAMER',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//********************************************************************************
+//* JCL TO SORT THE RECORD WITH INCLUDE MANY CONDITION
+//********************************************************************************
+//STEP001  EXEC PGM=SORT
+//SORTIN   DD DSN=RACFID.IBMMF.INPUT,
+//            DISP=SHR
+//SORTOUT  DD DSN=RACFID.IBMMF.OUTPUT,
+//            DISP=SHR
+//SYSPRINT DD SYSOUT=*
+//SYSOUT   DD SYSOUT=*
+//SYSIN    DD *
+  SORT FIELDS=(1,10,CH,A)
+  INCLUDE COND=(25,4,CH,EQ,C'2020',OR,50,1,CH,NE,C'F')
+/*
+
+
+
+

@@ -1,0 +1,23 @@
+
+
+
+
+
+JCL to copy a dataset using SORT
+
+
+
+//RACFID49 JOB 49,'IBMMAINFRAMER',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//********************************************************************************
+//* JCL TO COPY A DATASET USING SORT
+//********************************************************************************
+//STEP001  EXEC PGM=SORT
+//SORTIN   DD DSN=RACFID.IBMMF.INPUT,
+//            DISP=SHR
+//SORTOUT  DD DSN=RACFID.IBMMF.OUTPUT,
+//            DISP=SHR
+//SYSPRINT DD SYSOUT=*
+//SYSOUT   DD SYSOUT=*
+//SYSIN    DD *
+  OPTION COPY
+/*

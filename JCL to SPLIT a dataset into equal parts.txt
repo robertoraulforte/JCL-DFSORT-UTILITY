@@ -1,0 +1,23 @@
+
+
+
+
+JCL to SPLIT a dataset into equal parts
+
+
+
+//RACFID57 JOB 57,'IBMMAINFRAMER',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//********************************************************************************
+//* JCL TO SPLIT A DATASET INTO EQUAL PARTS
+//********************************************************************************
+//STEP001  EXEC PGM=SORT
+//SORTIN   DD DSN=RACFID.IBMMF.INPUT,DISP=SHR
+//SORTOF01 DD DSN=RACFID.IBMMF.OUTPUT1,DISP=SHR
+//SORTOF02 DD DSN=RACFID.IBMMF.OUTPUT2,DISP=SHR
+//*
+//SYSPRINT DD SYSOUT=*
+//SYSOUT   DD SYSOUT=*
+//SYSIN    DD *
+  OPTION COPY
+  OUTFIL FILES=(01,02),SPLIT
+/*

@@ -1,0 +1,20 @@
+
+
+
+JCL to sort record in ascending order
+
+
+//RACFID47 JOB 47,'IBMMAINFRAMER',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//********************************************************************************
+//* JCL TO SORT RECORD IN ASSCENDING ORDER
+//********************************************************************************
+//STEP001  EXEC PGM=SORT
+//SORTIN   DD DSN=RACFID.IBMMF.INPUT,
+//            DISP=SHR
+//SORTOUT  DD DSN=RACFID.IBMMF.OUTPUT,
+//            DISP=SHR
+//SYSPRINT DD SYSOUT=*
+//SYSOUT   DD SYSOUT=*
+//SYSIN    DD *
+  SORT FIELDS=(1,10,CH,A)
+/

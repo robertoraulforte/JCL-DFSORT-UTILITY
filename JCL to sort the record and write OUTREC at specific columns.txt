@@ -1,0 +1,23 @@
+
+
+
+
+JCL to sort the record and write OUTREC at specific columns
+
+
+
+//RACFID55 JOB 55,'IBMMAINFRAMER',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//********************************************************************************
+//* JCL TO SORT THE RECORD AND WRITE OUTREC AT SPECIFIC COLUMNS
+//********************************************************************************
+//STEP001  EXEC PGM=SORT
+//SORTIN   DD DSN=RACFID.IBMMF.INPUT,
+//            DISP=SHR
+//SORTOUT  DD DSN=RACFID.IBMMF.OUTPUT,
+//            DISP=SHR
+//SYSPRINT DD SYSOUT=*
+//SYSOUT   DD SYSOUT=*
+//SYSIN    DD *
+  SORT FIELDS=(1,4,BI,A)
+  OUTREC BUILD=(20:2,4,30:10,70)
+/*

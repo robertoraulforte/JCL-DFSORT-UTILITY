@@ -1,0 +1,27 @@
+
+
+
+JCL to SPLIT file record based on condition
+
+
+//RACFID56 JOB 56,'IBMMAINFRAMER',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//********************************************************************************
+//* JCL TO SPLIT FILE RECORD BASED ON CONDITION
+//********************************************************************************
+//STEP001  EXEC PGM=SORT
+//SORTIN   DD DSN=RACFID.IBMMF.INPUT,DISP=SHR
+//SORTOF01 DD DSN=RACFID.IBMMF.NY,DISP=SHR
+//SORTOF02 DD DSN=RACFID.IBMMF.PL,DISP=SHR
+//SORTOF03 DD DSN=RACFID.IBMMF.NJ.DISP=SHR
+//*
+//SYSPRINT DD SYSOUT=*
+//SYSOUT   DD SYSOUT=*
+//SYSIN    DD *
+  OPTION COPY
+  OUTFIL FILES=01,INCLUDE=(23,2,CH,EQ,C'NY')
+  OUTFIL FILES=02,INCLUDE=(23,2,CH,EQ,C'PL')
+  OUTFIL FILES=03,INCLUDE=(23,2,CH,EQ,C'NJ')
+/*
+
+
+

@@ -1,0 +1,21 @@
+
+
+
+
+JCL to SORT multiple fields using FORMAT keyword
+
+
+//RACFID46 JOB 46,'IBMMAINFRAMER',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//********************************************************************************
+//* JCL TO SORT MULTIPLE FIELDS USING FORMAT KEYWORD
+//********************************************************************************
+//STEP001  EXEC PGM=SORT
+//SORTIN   DD DSN=RACFID.IBMMF.INPUT,
+//            DISP=SHR
+//SORTOUT  DD DSN=RACFID.IBMMF.OUTPUT,
+//            DISP=SHR
+//SYSPRINT DD SYSOUT=*
+//SYSOUT   DD SYSOUT=*
+//SYSIN    DD *
+  SORT FORMAT=CH,FIELDS=(1,10,D,30,5,D)
+/*

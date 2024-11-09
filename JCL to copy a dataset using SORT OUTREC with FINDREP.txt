@@ -1,0 +1,22 @@
+
+
+
+JCL to copy a dataset using SORT OUTREC with FINDREP
+
+
+
+//RACFID54 JOB 54,'IBMMAINFRAMER',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//********************************************************************************
+//* JCL TO COPY A DATASET USING SORT OUTREC WITH FINDREP
+//********************************************************************************
+//STEP001  EXEC PGM=SORT
+//SORTIN   DD DSN=RACFID.IBMMF.INPUT,
+//            DISP=SHR
+//SORTOUT  DD DSN=RACFID.IBMMF.OUTPUT,
+//            DISP=SHR
+//SYSPRINT DD SYSOUT=*
+//SYSOUT   DD SYSOUT=*
+//SYSIN    DD *
+  OPTION COPY
+  OUTREC FINDREP=(IN=C'MAINFRAME TUTORIAL',OUT=C'IBMMAINFRAMER')
+/*

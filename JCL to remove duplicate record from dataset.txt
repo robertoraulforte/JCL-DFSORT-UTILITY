@@ -1,0 +1,20 @@
+
+
+
+
+JCL to remove duplicate record from dataset
+
+
+
+//RACFID59 JOB 59,'IBMMAINFRAMER',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//********************************************************************************
+//* JCL TO REMOVE DUPLICATE RECORD FROM DATASET
+//********************************************************************************
+//STEP001  EXEC PGM=SORT
+//SYSOUT   DD SYSOUT=*
+//SORTIN   DD DSN=RACFID.IBMMF.INPUT,DISP=SHR
+//SORTOUT  DD DSN=RACFID.IBMMF.OUTPUT,DISP=SHR
+//SYSIN    DD *
+  SORT FIELDS=(1,15,ZD,A)
+  SUM FIELDS=NONE
+/*

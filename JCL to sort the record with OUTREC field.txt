@@ -1,0 +1,27 @@
+
+
+
+
+JCL to sort the record with OUTREC field
+
+
+
+
+//RACFID53 JOB 53,'IBMMAINFRAMER',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//********************************************************************************
+//* JCL TO SORT THE RECORD WITH OUTREC FIELDS
+//********************************************************************************
+//STEP001  EXEC PGM=SORT
+//SORTIN   DD DSN=RACFID.IBMMF.INPUT,
+//            DISP=SHR
+//SORTOUT  DD DSN=RACFID.IBMMF.OUTPUT,
+//            DISP=SHR
+//SYSPRINT DD SYSOUT=*
+//SYSOUT   DD SYSOUT=*
+//SYSIN    DD *
+  SORT FIELDS=(10,4,BI,D)
+  OUTREC FIELDS=(1,20,30,50)
+/*
+
+
+

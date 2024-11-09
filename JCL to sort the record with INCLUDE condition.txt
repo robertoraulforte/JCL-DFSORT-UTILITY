@@ -1,0 +1,21 @@
+
+
+
+JCL to sort the record with INCLUDE condition
+
+
+//RACFID40 JOB 40,'IBMMAINFRAMER',CLASS=A,MSGCLASS=A,MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//********************************************************************************
+//* JCL TO SORT THE RECORD WITH INCLUDE CONDITION
+//********************************************************************************
+//STEP001  EXEC PGM=SORT
+//SORTIN   DD DSN=RACFID.IBMMF.INPUT,
+//            DISP=SHR
+//SORTOUT  DD DSN=RACFID.IBMMF.OUTPUT,
+//            DISP=SHR
+//SYSPRINT DD SYSOUT=*
+//SYSOUT   DD SYSOUT=*
+//SYSIN    DD *
+  SORT FIELDS=(1,10,CH,A)
+  INCLUDE COND=(20,5,CH,EQ,C'IBMMF')
+/*
